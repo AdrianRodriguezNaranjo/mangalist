@@ -1,0 +1,17 @@
+package com.adri.manga.entity.dao;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import com.adri.manga.entity.models.Manga;
+import com.adri.manga.entity.models.User;
+
+public interface IMangaDaoUsers extends CrudRepository<User, Long> {
+	
+//	@Query("SELECT u.mangasInUser FROM User u WHERE u.id = :id")
+//	public List<Manga> findAllMangasByUserId(@Param("id") int id);
+
+}

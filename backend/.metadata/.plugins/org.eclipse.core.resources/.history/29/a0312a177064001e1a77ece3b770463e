@@ -1,0 +1,50 @@
+package com.adri.manga.entity.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.adri.manga.entity.dao.IMangaDaoMangas;
+import com.adri.manga.entity.dao.IMangaDaoUsers;
+import com.adri.manga.entity.models.Manga;
+
+@Service
+public class MangaServiceMangasImpl implements IMangaServiceMangas{
+	
+	@Autowired
+	private IMangaDaoMangas mangasDao;
+	
+	@Autowired
+	private IMangaDaoUsers userDao;
+	
+	@Override
+	public List<Manga> getAll() {
+		return (List<Manga>) mangasDao.findAll();
+	}
+
+	@Override
+	public List<Manga> getAllMangasInUser(int id) {
+		// TODO Auto-generated method stub
+//		return userDao.findAllMangasByUserId(id);
+		return null;
+	}
+
+	@Override
+	public void post(Manga manga) {
+		mangasDao.save(manga);		
+	}
+
+	@Override
+	public void put(Manga manga, long id) {
+		mangasDao.findById(id).ifPresent((x)->{
+			manga.setId(id);
+			mangasDao.save(manga);
+		});		
+	}
+
+	@Override
+	public void delete(long id) {
+		mangasDao.deleteById(id);		
+	}
+}

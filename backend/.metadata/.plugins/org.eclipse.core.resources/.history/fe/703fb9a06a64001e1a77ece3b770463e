@@ -1,0 +1,13 @@
+package com.adri.manga.entity.services;
+
+import java.util.List;
+
+import com.adri.manga.entity.models.Manga;
+
+public interface IMangaServiceMangas {
+	public List<Manga> getAll();
+	public List<Manga> getAllMangasInUser(int idUser);
+	public void post(Manga manga);
+	public void put(Manga manga,long idManga);
+	public void delete(long idManga);
+}

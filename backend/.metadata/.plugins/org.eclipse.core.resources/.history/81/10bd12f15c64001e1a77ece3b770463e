@@ -1,0 +1,50 @@
+package com.adri.manga.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.adri.manga.entity.models.Manga;
+import com.adri.manga.entity.models.User;
+import com.adri.manga.entity.services.IMangaServiceMangas;
+
+@CrossOrigin(origins = "*")
+@RestController
+public class MangaControllerMangas {
+
+	@Autowired
+	private IMangaServiceMangas mangasService;
+
+	@GetMapping("/mangas")
+	public List<Manga> getAll() {
+		return mangasService.getAll();
+	}
+	
+	@GetMapping("/mangas/users/{id}")
+	private List<Manga> getBicyclesInShop(@PathVariable(value = "id") int id){
+		return mangasService.getAllMangasInUser(id);
+	}
+
+	@PostMapping("/mangas")
+	public void post(Manga manga) {
+		mangasService.post(manga);
+	}
+
+	@PutMapping("/mangas/{id}")
+	public void put(Manga manga, @PathVariable(value = "id") long id) {
+		mangasService.put(manga, id);
+	}
+
+	@DeleteMapping("/mangas/{id}")
+	public void delete(@PathVariable(value = "id") long id) {
+		mangasService.delete(id);
+	}
+}
